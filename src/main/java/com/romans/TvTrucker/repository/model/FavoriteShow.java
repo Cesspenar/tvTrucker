@@ -7,20 +7,15 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name = "ANIMAL")
+@Table(name = "FAVORITE_SHOWS")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Animal {
+public class FavoriteShow {
 
-    public Animal(String name) {
-        this.name = name;
-    }
+    @EmbeddedId
+    private FavoriteShowId favoriteShowId;
 
-    @Id
-    @GeneratedValue
-    private int id;
-
-    @Column
-    private String name;
-
+    @ManyToOne
+    @MapsId("userId")
+    private User user;
 }
