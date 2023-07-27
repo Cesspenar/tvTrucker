@@ -2,14 +2,11 @@ package com.romans.TvTrucker.controller;
 
 import com.romans.TvTrucker.DTO.Episode;
 import com.romans.TvTrucker.DTO.Show;
-import com.romans.TvTrucker.repository.FavoriteShowRepository;
 import com.romans.TvTrucker.repository.model.FavoriteShow;
 import com.romans.TvTrucker.repository.model.User;
 import com.romans.TvTrucker.repository.model.WatchedEpisode;
-import com.romans.TvTrucker.service.FavoriteShowService;
 import com.romans.TvTrucker.service.TvMazeService;
 import com.romans.TvTrucker.service.UserService;
-import com.romans.TvTrucker.service.WatchedEpisodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,16 +19,12 @@ public class TvTruckerController {
     private UserService userService;
 
     @Autowired
-    private FavoriteShowService favoriteShowService;
-
-    @Autowired
-    private WatchedEpisodeService watchedEpisodeService;
-
-    @Autowired
     private TvMazeService tvMazeService;
 
     @PostMapping("/addUser")
-    public void addUser(@RequestBody User user) { userService.saveUser(user);}
+    public void addUser(@RequestBody User user) {
+        userService.saveUser(user);
+    }
 
     @DeleteMapping("/deleteUser/{id}")
     public void deleteUser(@PathVariable int id) {
@@ -40,22 +33,22 @@ public class TvTruckerController {
 
     @PostMapping("/favoriteShow/{userId}/{showId}")
     public void markShowAsFavorite(@PathVariable int userId, @PathVariable int showId) {
-        favoriteShowService.markShowAsFavorite(userId, showId);
+        userService.markShowAsFavorite(userId, showId);
     }
 
     @DeleteMapping("/favoriteShow/{userId}/{showId}")
     public void unmarkShowAsFavorite(@PathVariable int userId, @PathVariable int showId) {
-        favoriteShowService.unmarkShowAsFavorite(userId, showId);
+        userService.unmarkShowAsFavorite(userId, showId);
     }
 
     @PostMapping("/watchedEpisode/{userId}/{showId}/{seasonNr}/{episodeNr}")
     public void markEpisodeAsWatched(@PathVariable int userId, @PathVariable int showId, @PathVariable int seasonNr, @PathVariable int episodeNr) {
-        watchedEpisodeService.markEpisodeAsWatched(userId, showId, seasonNr, episodeNr);
+        userService.markEpisodeAsWatched(userId, showId, seasonNr, episodeNr);
     }
 
     @DeleteMapping("/watchedEpisode/{userId}/{showId}/{seasonNr}/{episodeNr}")
     public void unmarkEpisodeAsWatched(@PathVariable int userId, @PathVariable int showId, @PathVariable int seasonNr, @PathVariable int episodeNr) {
-        watchedEpisodeService.unmarkEpisodeAsWatched(userId, showId, seasonNr, episodeNr);
+        userService.unmarkEpisodeAsWatched(userId, showId, seasonNr, episodeNr);
     }
 
     @GetMapping("/favoriteShows/{userId}")
@@ -65,7 +58,7 @@ public class TvTruckerController {
 
     @GetMapping("/watchedEpisodes/{userId}/{showId}")
     public Set<WatchedEpisode> getWatchedEpisodesForShow(@PathVariable int userId, @PathVariable int showId) {
-        return userService.usersWatchedEpisodes(userId, showId);
+        return userService.usersWatchedEpisodesForShow(userId, showId);
     }
 
     @GetMapping("getShow/{showId}")
@@ -74,7 +67,7 @@ public class TvTruckerController {
     }
 
     @GetMapping("getEpisode/{showId}/{seasonNr}/{episodeNr}")
-    public Episode getEpisode(@PathVariable int showId,@PathVariable int seasonNr,@PathVariable int episodeNr) {
+    public Episode getEpisode(@PathVariable int showId, @PathVariable int seasonNr, @PathVariable int episodeNr) {
         return tvMazeService.getEpisode(showId, seasonNr, episodeNr);
     }
 

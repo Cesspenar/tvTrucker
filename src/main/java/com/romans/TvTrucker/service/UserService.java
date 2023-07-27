@@ -29,17 +29,39 @@ public class UserService {
         return repository.findById(userId);
     }
 
+    public void markShowAsFavorite(int userId, int showId) {
+        User user = this.getUserById(userId).get();
+        user.addFavoriteShow(showId);
+        this.saveUser(user);
+    }
+
+    public void unmarkShowAsFavorite(int userId, int showId) {
+        User user = this.getUserById(userId).get();
+        user.removeFavoriteShow(showId);
+        this.saveUser(user);
+    }
+
     public Set<FavoriteShow> usersFavoriteShows(int userId) {
         User user = this.getUserById(userId).get();
-        System.out.println(user.getWatchedEpisodes());
-        System.out.println(user.getFavoriteShows());
         return user.getFavoriteShows();
     }
 
-    public Set<WatchedEpisode> usersWatchedEpisodes(int userId, int showId) {
+    public Set<WatchedEpisode> usersWatchedEpisodesForShow(int userId, int showId) {
         User user = this.getUserById(userId).get();
         return user.getWatchedEpisodes().stream()
-                .filter(e -> e.getWatchedEpisodeID().getShowId() == showId)
+                .filter(e -> e.getShowId() == showId)
                 .collect(Collectors.toSet());
+    }
+
+    public void markEpisodeAsWatched(int userId, int showId, int seasonNumber, int episodeNumber) {
+        User user = this.getUserById(userId).get();
+        user.addWatchedEpisode(showId, seasonNumber, episodeNumber);
+        this.saveUser(user);
+    }
+
+    public void unmarkEpisodeAsWatched(int userId, int showId, int seasonNumber, int episodeNumber) {
+        User user = this.getUserById(userId).get();
+        user.removeWatchedEpisode(showId, seasonNumber, episodeNumber);
+        this.saveUser(user);
     }
 }
