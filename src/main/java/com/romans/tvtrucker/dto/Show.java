@@ -1,4 +1,4 @@
-package com.romans.TvTrucker.DTO;
+package com.romans.tvtrucker.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

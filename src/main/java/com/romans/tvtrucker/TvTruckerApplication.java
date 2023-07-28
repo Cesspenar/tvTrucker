@@ -1,4 +1,4 @@
-package com.romans.TvTrucker;
+package com.romans.tvtrucker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

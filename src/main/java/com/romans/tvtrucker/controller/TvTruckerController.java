@@ -1,12 +1,12 @@
-package com.romans.TvTrucker.controller;
+package com.romans.tvtrucker.controller;
 
-import com.romans.TvTrucker.DTO.Episode;
-import com.romans.TvTrucker.DTO.Show;
-import com.romans.TvTrucker.repository.model.FavoriteShow;
-import com.romans.TvTrucker.repository.model.User;
-import com.romans.TvTrucker.repository.model.WatchedEpisode;
-import com.romans.TvTrucker.service.TvMazeService;
-import com.romans.TvTrucker.service.UserService;
+import com.romans.tvtrucker.dto.Episode;
+import com.romans.tvtrucker.dto.Show;
+import com.romans.tvtrucker.repository.model.FavoriteShow;
+import com.romans.tvtrucker.repository.model.User;
+import com.romans.tvtrucker.repository.model.WatchedEpisode;
+import com.romans.tvtrucker.service.TvMazeService;
+import com.romans.tvtrucker.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

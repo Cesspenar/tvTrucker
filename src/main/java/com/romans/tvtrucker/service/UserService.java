@@ -1,9 +1,10 @@
-package com.romans.TvTrucker.service;
+package com.romans.tvtrucker.service;
 
-import com.romans.TvTrucker.repository.UserRepository;
-import com.romans.TvTrucker.repository.model.FavoriteShow;
-import com.romans.TvTrucker.repository.model.User;
-import com.romans.TvTrucker.repository.model.WatchedEpisode;
+import com.romans.tvtrucker.repository.UserRepository;
+import com.romans.tvtrucker.repository.model.FavoriteShow;
+import com.romans.tvtrucker.repository.model.User;
+import com.romans.tvtrucker.repository.model.WatchedEpisode;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class UserService {
 
     @Autowired
@@ -53,15 +55,15 @@ public class UserService {
                 .collect(Collectors.toSet());
     }
 
-    public void markEpisodeAsWatched(int userId, int showId, int seasonNumber, int episodeNumber) {
+    public void markEpisodeAsWatched(int userId, int showId, int seasonNr, int episodeNr) {
         User user = this.getUserById(userId).get();
-        user.addWatchedEpisode(showId, seasonNumber, episodeNumber);
+        user.addWatchedEpisode(showId, seasonNr, episodeNr);
         this.saveUser(user);
     }
 
-    public void unmarkEpisodeAsWatched(int userId, int showId, int seasonNumber, int episodeNumber) {
+    public void unmarkEpisodeAsWatched(int userId, int showId, int seasonNr, int episodeNr) {
         User user = this.getUserById(userId).get();
-        user.removeWatchedEpisode(showId, seasonNumber, episodeNumber);
+        user.removeWatchedEpisode(showId, seasonNr, episodeNr);
         this.saveUser(user);
     }
 }

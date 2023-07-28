@@ -1,4 +1,4 @@
-package com.romans.TvTrucker.repository.model;
+package com.romans.tvtrucker.repository.model;
 
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;

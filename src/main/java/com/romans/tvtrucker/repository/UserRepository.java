@@ -1,6 +1,6 @@
-package com.romans.TvTrucker.repository;
+package com.romans.tvtrucker.repository;
 
-import com.romans.TvTrucker.repository.model.User;
+import com.romans.tvtrucker.repository.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
