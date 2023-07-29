@@ -6,8 +6,5 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class TvTruckerApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
 
 }
