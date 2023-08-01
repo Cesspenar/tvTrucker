@@ -11,6 +11,7 @@
     <groupId>com.romans</groupId>
     <artifactId>TvTrucker</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
     <name>TvTrucker</name>
     <description>App for tracking favorite TV shows</description>
     <properties>
